@@ -1,99 +1,151 @@
-Parking Detector Pro
+# 🚗 Parking Slot Detection System (Pro)
 
-Parking Detector Pro is a web-based computer vision tool designed to identify the occupancy status of parking spots from a single image. It provides a complete interface to load an image, define parking slots, run detection, and analyze the results.
+A MATLAB-based intelligent parking slot detection system using **digital image processing**.  
+This project automatically identifies **occupied and empty parking slots** from parking lot images using **edge detection** and **morphological image processing** techniques.  
 
-This project is a JavaScript/HTML/CSS implementation inspired by the original ParkingDetectorPro MATLAB application, bringing its core functionality to the web.
+---
 
-Features
+## 📘 Project Overview
 
-Load Image: Start by loading any .jpg or .png image of a parking lot.
+With the rise of urban traffic, finding parking spaces has become a major challenge.  
+This system uses **computer vision** to analyze parking lot images and determine parking space availability without the need for physical sensors.
 
-Slot Definition:
+It provides:
+- Real-time image analysis  
+- Clear visual feedback (red = occupied, green = empty)  
+- Interactive GUI for ease of use  
+- Exportable reports and results  
 
-Draw Slots: Manually draw rectangular slots directly on the image.
+Built entirely in MATLAB using the **App Designer**, **Image Processing Toolbox**, and **Computer Vision Toolbox**.
 
-Load Slots: Load predefined slot layouts from a .json file.
+---
 
-Save Slots: Save your newly drawn slots to a .json file for future use.
+## 🧠 Core Concepts
 
-Occupancy Detection: Run an edge-detection-based algorithm to determine if each slot is 'Occupied' or 'Empty'.
+1. **Region of Interest (ROI) Definition**  
+   Define parking slot regions manually or load from saved configurations.  
+2. **Edge Detection (Canny Algorithm)**  
+   Detects contours and outlines of vehicles.  
+3. **Morphological Processing**  
+   Cleans up the edge map to remove noise.  
+4. **Feature Extraction (Edge Density Calculation)**  
+   Computes the ratio of edge pixels to total pixels for each slot.  
+5. **Threshold-Based Classification**  
+   Determines if a slot is *Occupied* or *Empty* based on a dynamic threshold.  
+6. **Data Visualization**  
+   Provides a dashboard with a pie chart, summary table, and annotated image.
 
-Interactive Threshold: Use a slider to fine-tune the detection sensitivity (edge density) in real-time. The results update automatically.
+---
 
-Visual Analysis:
+## 🧰 Tools & Technologies
 
-Use the "Select View" dropdown to inspect the intermediate processing steps: 'Grayscale', 'Sobel Edges', and 'Morphological Result'.
+| Tool | Purpose |
+|------|----------|
+| **MATLAB App Designer** | GUI development |
+| **Image Processing Toolbox** | Edge detection, morphology |
+| **Computer Vision Toolbox** | Object labeling and image transformations |
+| **(Optional)** Statistics and Machine Learning Toolbox | Advanced classification or ML-based detection |
 
-Results Dashboard:
+---
 
-View a summary pie chart of occupied vs. empty spots.
+## ⚙️ Implementation Workflow
 
-See quick stats: 'Occupied Slots', 'Empty Slots', and 'Occupancy Rate'.
+### **1️⃣ Setup Phase**
+- Load the parking lot image (`Load Image`)
+- Define or load parking slot coordinates (`Draw Slots` or `Load Slots`)
 
-Analyze a detailed table with the status and density score for each individual slot.
+### **2️⃣ Detection Phase**
+- Click `Run Detection` to:
+  - Convert image to grayscale
+  - Apply Canny edge detection
+  - Apply morphological closing
+  - Calculate edge density per slot
+  - Classify each slot as *Occupied* or *Empty*
 
-Export Data:
+### **3️⃣ Output Phase**
+- Annotated image with color-coded slots  
+- Data dashboard showing:
+  - Total occupied & empty slots  
+  - Occupancy rate  
+  - Summary pie chart  
+- Export results (`Export Image` / `Export CSV`)
 
-Save a snapshot of the final detection view as a .png file.
+---
 
-Export the detailed results table to a .csv file for reporting.
+## 🧩 GUI Features
 
-How to Use
+- **Interactive Controls**: Buttons and sliders for all actions  
+- **Threshold Adjustment**: Real-time fine-tuning of detection accuracy  
+- **Diagnostic Views**: Step-by-step visualization (Canny edges, morphological image, final output)  
+- **Data Export**: Save results and processed images  
 
-1. Running the Application
+---
 
-This is a single, self-contained HTML file. No installation is required.
+## 📊 Results
 
-Save the index.html file provided to your computer.
+**Visual Outputs:**
+1. Original Parking Image  
+2. Canny Edge Map  
+3. Morphological Result  
+4. Final Annotated Detection Image  
 
-Open the index.html file in any modern web browser (e.g., Google Chrome, Firefox, Microsoft Edge).
+**Summary Dashboard:**
+- Pie chart: Occupancy distribution  
+- Table: Slot-wise classification and edge density  
 
-2. Step-by-Step Workflow
+---
 
-Click "1. Load Image" to select your parking lot image.
+## 📈 Inference & Discussion
 
-Define your parking slots using one of these two methods:
+- ✅ Efficient and accurate under stable lighting conditions  
+- ⚙️ Manually tunable threshold allows flexibility  
+- ⚠️ Sensitive to shadows, lighting, and camera movement  
+- 💡 Ideal for **indoor or fixed-camera** environments  
+- 🚀 Next step: integrate **YOLO or SVM** for autonomous detection
 
-A) Load: Click "2a. Load Slots (.json)" if you have a previously saved layout file.
+---
 
-B) Draw: Click "2b. Draw Slots". You will be prompted for the number of slots to draw. Click and drag on the image to create each slot.
+## 🏁 Conclusion
 
-(Optional) If you drew slots manually, click "3. Save Slots (.json)" to save your layout for future use.
+The **Parking Slot Detection System (Pro)** is a complete proof-of-concept demonstrating the power of MATLAB in computer vision applications.  
+It offers a functional, GUI-based solution for visual parking management and provides a foundation for future AI-driven, real-time smart parking systems.
 
-Click "4. Run Detection" to perform the analysis.
+---
 
-Analyze the results in the right-hand panel. The pie chart, stats, and table will populate. The main image will update with colored boxes.
+## 👨‍💻 Author
 
-Adjust the Detection Threshold slider. You will see the results in the table and on the image update in real-time.
+**M Kashi Vishwanath**  
+📘 Register Number: URK23EC4015  
+🎓 Department of Electronics and Communication Engineering  
+📚 Subject: Digital Image Processing (23EC2011)  
+🕒 Academic Year: 2025–2026 (Odd Semester)
 
-Use the Export buttons to save your snapshot or results.
+---
 
-How it Works (Technical Overview)
+## 📂 Repository Structure
 
-The detection logic is based on edge density. When you click "Run Detection", the application performs the following steps:
+```
+Parking-Slot-Detection/
+│
+├── app/
+│   ├── ParkingDetectorPro.mlapp     # Main MATLAB App
+│   ├── slot_data.mat                # Saved slot coordinates
+│
+├── images/
+│   ├── parking_sample.jpg
+│   ├── output_result.png
+│
+├── data/
+│   ├── results.csv
+│
+├── README.md                        # Project documentation
+└── report/
+    └── Project_Report_DIP.pdf
+```
 
-Grayscale Conversion: The image is converted to black and white.
+---
 
-Edge Detection: A Sobel filter is applied to the grayscale image. This highlights all the edges (like the outlines of cars and parking lines).
+## 🧾 License
 
-Morphological Closing: A "dilation" pass followed by an "erosion" pass is performed. This process thickens the detected edges and closes small gaps, making objects like cars appear as more "solid" blocks of edges.
-
-Slot Analysis: The app loops through each parking slot you defined. For each slot's rectangular area, it calculates the "edge density" — the percentage of white (edge) pixels within that box.
-
-Classification: This density score is compared against the Detection Threshold.
-
-If density > threshold, the slot is considered 'Occupied'.
-
-If density <= threshold, the slot is considered 'Empty'.
-
-Technology Used
-
-HTML5: Provides the structure for the application.
-
-Tailwind CSS: Used for all styling, layout, and responsiveness.
-
-JavaScript (ES6+): Powers all application logic, including:
-
-Canvas API: Used for all image rendering, drawing, and pixel-level manipulation.
-
-Custom Image Processing: Hand-written JavaScript functions for grayscale conversion, Sobel filtering, and morphological operations (dilation/erosion).
+This project is for academic and research purposes only.  
+© 2025 M Kashi Vishwanath. All Rights Reserved.
